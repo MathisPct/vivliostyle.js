@@ -123,6 +123,21 @@ export class Face {
     sb.append(";\n}\n");
     return sb.toString();
   }
+
+  /**
+   * Ensure font loading/rendering does not interfere with pagination.
+   */
+  ensureFontLoadingDoesNotInterfereWithPagination(): void {
+    const style = document.createElement("style");
+    style.textContent = `
+      @font-face {
+        font-family: ${this.family};
+        src: ${this.src};
+        font-display: swap;
+      }
+    `;
+    document.head.appendChild(style);
+  }
 }
 
 /**

@@ -129,6 +129,8 @@ export function getElementHeight(
 ): number {
   const rect = column.clientLayout.getElementClientRect(element);
   const margin = column.getComputedMargin(element);
+  const style = window.getComputedStyle(element);
+  const fontFamily = style.fontFamily;
   return vertical
     ? rect["width"] + margin["left"] + margin["right"]
     : rect["height"] + margin["top"] + margin["bottom"];

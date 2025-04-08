@@ -24,10 +24,10 @@ import * as Plugin from "./plugin";
  * Check if style="box-decoration-break: clone" is set
  */
 export function isCloneBoxDecorationBreak(element: Element): boolean {
+  const style = window.getComputedStyle(element);
   return (
-    (element as HTMLElement)?.style?.["box-decoration-break"] === "clone" ||
-    (element as HTMLElement)?.style?.["-webkit-box-decoration-break"] ===
-      "clone"
+    style["box-decoration-break"] === "clone" ||
+    style["-webkit-box-decoration-break"] === "clone"
   );
 }
 

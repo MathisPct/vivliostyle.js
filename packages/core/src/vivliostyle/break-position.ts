@@ -54,6 +54,7 @@ export function calculateOffset(
   nodeContext: Vtree.NodeContext,
   elementsOffsets: RepetitiveElement.ElementsOffset[],
 ): { current: number; minimum: number } {
+  const fontFamily = window.getComputedStyle(nodeContext.viewNode as Element).fontFamily;
   return {
     current: elementsOffsets.reduce(
       (val, repetitiveElement) =>

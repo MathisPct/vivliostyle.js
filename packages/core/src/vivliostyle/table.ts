@@ -112,17 +112,23 @@ export class TableCellFragment {
 
   findAcceptableBreakPosition(): Layout.BreakPositionAndNodeContext {
     const element = this.cellNodeContext.viewNode as HTMLElement;
-    const { verticalAlign, alignContent } = element.style;
+    const { verticalAlign, alignContent, fontFamily } = element.style;
     if (verticalAlign !== "top" && verticalAlign !== "baseline") {
       Base.setCSSProperty(element, "vertical-align", "top");
     }
     if (alignContent && alignContent !== "normal") {
       Base.setCSSProperty(element, "align-content", "normal");
     }
+    if (fontFamily) {
+      Base.setCSSProperty(element, "font-family", fontFamily);
+    }
     const bp = this.pseudoColumn.findAcceptableBreakPosition(true);
     Base.setCSSProperty(element, "vertical-align", verticalAlign);
     if (alignContent && alignContent !== "normal") {
       Base.setCSSProperty(element, "align-content", alignContent);
+    }
+    if (fontFamily) {
+      Base.setCSSProperty(element, "font-family", fontFamily);
     }
     return bp;
   }
@@ -1423,11 +1429,6 @@ export class TableLayoutProcessor implements LayoutProcessor.LayoutProcessor {
           cols.push(col);
         }
         col = col.nextElementSibling;
-      }
-      while (span-- > 0) {
-        col = colGroup.ownerDocument.createElement("col");
-        colGroup.appendChild(col);
-        cols.push(col);
       }
     });
     return cols;
