@@ -149,6 +149,14 @@ module.exports = [
         file: "border-width-test.html",
         title: "border-width test",
       },
+      {
+        file: "long-table-vivliostyle-with-font-family.html",
+        title: "Long Table with Font Family",
+      },
+      {
+        file: "long-table-vivliostyle-without-font-family.html",
+        title: "Long Table without Font Family",
+      },
     ],
   },
   {
